@@ -19,9 +19,9 @@ setup_db(app)
     binds a flask application and a SQLAlchemy service
 '''
 
-def setup_db():
+def setup_db(app):
     app.config["SQLALCHEMY_DATABASE_URI"] = DATABASE_PATH
-    app.config["DATABASE_TRACK_MODIFICATIONS"] = False
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     db.app = app
     db.init_app(app)
     db.create_all()
@@ -34,7 +34,7 @@ Plant
 class Plant(db.Model):
     __tablename__ = "plants"
 
-    id = Column(Integer, Primary_key=True)
+    id = Column(Integer, primary_key=True)
     name = Column(String)
     scientific_name = Column(String)
     is_poisonous = Column(Boolean)
